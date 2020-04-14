@@ -8,7 +8,11 @@ const nbrCards=17;
 const max=8;
 let indexOfRepeatedCards=1;
 const divContainer=document.getElementById('cardContainer')
-
+let motifsCartes=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
+const etatsCartes=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+const cartesRetournees=[];
+const nbPairesTrouvees=0;
+const nro=0;
 /*
 
 VOIR FUNCTION ARRAY POUR LES NUMEROS DE LES IMAGES
@@ -19,9 +23,22 @@ function randomNumberCalculator(){
     return randomNumber
 }
 */
+function initialiseJeu(motifsCartes){
 
 
-for (let index = 1; index < nbrCards; index++) {
+    /*YAHIA ICI IL FAUDRAIT STP UNE function qui va melanger les valeurs du tableau motifCartes et me retourner un tableau melangee */
+   
+       
+    
+
+
+
+}
+// la bouble for a etre encapsule dans une variable init qui va etre appeler avec le click de New Game
+//function creerCartes(nro){
+    console.log('appel de la methode creer cartes')
+for (let index =1; index < nbrCards; index++) {
+
 
         /*creation de la premier balise*/
         const cardsAcreer=document.createElement('div')
@@ -54,6 +71,7 @@ for (let index = 1; index < nbrCards; index++) {
         divFaceBack.classList.add('card__face','card__face--back')
         divClassCard.appendChild(divFaceBack)
 
+
         /*creation et inclusion de la img dans la div class face-back */
         if (index <= max) {
         const imgBack=document.createElement('img')
@@ -71,5 +89,12 @@ for (let index = 1; index < nbrCards; index++) {
 
 
  }
-
-
+//}
+ const imgCartes=document.getElementById("cardContainer").getElementsByTagName("img");
+ console.log(imgCartes)
+ for(let i=0;i<imgCartes.length;i++){
+	imgCartes[i].noCarte=i; //Ajout de la propriété noCarte à l'objet img
+	imgCartes[i].onclick=function(){
+		controleJeu(this.noCarte);
+    }
+}
