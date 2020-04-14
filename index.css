@@ -1,127 +1,50 @@
-body {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    margin: 5%;
-}
-
 img {
-    width: 30%;
+    width: 70%;
 }
 
-.topnav {
-    background-color: #4CAF50;
-    grid-area: 1 / 1 / 1 / 6;
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+.scene {
+    display: inline-block;
+    width: 10%;
+    height: 25vh;
+    border: 1px solid #CCC;
+    margin: 1%;
+    perspective: 600px;
 }
 
-.topnav button {
-    color: black;
-    text-align: center;
-    padding: 1%;
-    font-size: 17px;
-    background-color: inherit;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
-.topnav button:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-/*-----------------------------------------------------------------------------------*/
-
-/* Style the tab */
-
-.tab {
-    grid-area: 2 / 1 / 4 / 1;
-}
-
-/* Style the buttons that are used to open the tab content */
-
-.tab button {
-    background-color: #4CAF50;
-    color: black;
-    padding: 10%;
+.card {
     width: 100%;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-}
-
-/* Change background color of buttons on hover */
-
-.tab button:hover {
-    background-color: #ddd;
-}
-
-/*----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
-.photos {
-    grid-area: 2 / 2 / 5 / 5;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    margin: 1%;
-}
-
-#infoBoxes {
-    grid-column: 5/6;
-    grid-row: 2/5;
-    background-color: #4CAF50;
-}
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
-/* entire container, keeps perspective */
-
-.flip-container {
-    perspective: none;
-    grid-area: 2 / 2 / 5 / 5;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    margin: 1%;
-}
-
-/* flip the pane when hovered */
-
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-    transform: rotateY(180deg);
-}
-
-.flip-container, .front, .back {
-    width: 320px;
-    height: 480px;
-}
-
-/* flip speed goes here */
-
-.flipper {
-    transition: 0.7s;
+    height: 25vh;
+    transition: transform 1s;
     transform-style: preserve-3d;
+    cursor: pointer;
     position: relative;
 }
 
-/* hide back of pane during swap */
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
 
-.front, .back {
-    backface-visibility: hidden;
+.card__face {
     position: absolute;
-    top: 0;
-    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 260px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
-/* front pane, placed above back */
-
-.front {
-    z-index: 2;
-    /* for firefox 31 */
-    transform: rotateY(0deg);
+.card__face--front {
+    background: blue;
 }
 
-/* back, initially hidden pane */
-
-.back {
+.card__face--back {
+    background: white;
     transform: rotateY(180deg);
 }
 
