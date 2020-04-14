@@ -30,7 +30,7 @@ for (let index = 1; index < nbrCards; index++) {
         /*creation de la deuxime balise*/
         const divClassCard=document.createElement('div')
         divClassCard.classList.add('card')
-        divClassCard.addEventListener( 'click', function() {
+        divClassCard.addEventListener( 'click',  function() {
             divClassCard.classList.toggle('is-flipped');
           });
         cardsAcreer.appendChild(divClassCard)
@@ -71,4 +71,5 @@ for (let index = 1; index < nbrCards; index++) {
 
 
  }
+
 
