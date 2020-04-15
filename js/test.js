@@ -14,31 +14,30 @@ const etatsCartes=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 const cartesRetournees=[];
 const nbPairesTrouvees=0;
 const nro=0;
-//console.log(divClassCard)
-/*
+let cardFlipped=false;
+const imgSrc=document.getElementsByClassName('card__face--back')
+const bouton=document.getElementsByClassName('btn')
+bouton[0].addEventListener('click', initialiserJeu);
 
-VOIR FUNCTION ARRAY POUR LES NUMEROS DE LES IMAGES
-function randomNumberCalculator(){
-    const randomNumber=Math.floor(Math.random() * 8) + 1;
-    const numberArray=[randomNumber];
-    console.log(numberArray)
-    return randomNumber
+function initialiserJeu(){
+
+let indice=0;
+/* MELANGEUR DE CHIFFRES DES CARTES  */
+for(let i = motifsCartes.length-1; i > 0; i--){
+    const j = Math.floor(Math.random() * i)
+    const temp = motifsCartes[i]
+    motifsCartes[i] = motifsCartes[j]
+    motifsCartes[j] = temp
+  }
+/* AJOUTER DES CHIFFRES ALEATOIRES AU SRC */
+for(var i=0;i<imgSrc.length;i++){
+    imgSrc[i].src = 'photos/Car' + motifsCartes[indice] + '.png '
+    indice++
+    }
+/*-- CHANGEMENT DU BOUTTON A ARRETER ----*/
+    bouton[0].innerHTML='Arreter'
+    bouton[0].value='arreter'
 }
-*/
-
-
-
-    (function initialiseJeu() {
-        divClassCard.forEach(card=>{
-            let randomPos=Math.floor(Math.random()*16);
-            console.log(card.style.order)
-            card.style.order = randomPos;
-        })
-    })();
-
-
-// la bouble for a etre encapsule dans une variable init qui va etre appeler avec le click de New Game
-//function creerCartes(nro){
     console.log('appel de la methode creer cartes')
 for (let index =1; index < nbrCards; index++) {
 
@@ -51,4 +50,10 @@ for (let index =1; index < nbrCards; index++) {
         function flipped(){
 
             this.classList.toggle('is-flipped')
+
         }
+ /*  if (bouton[0].value ==='arreter') {
+                location.reload();
+                this.classList.remove('is-flipped')
+            }
+            */
