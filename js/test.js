@@ -86,7 +86,7 @@ function checkMatch(){
             cardFlipped=false
             car1=null
             car2=null
-        },2000)
+        },800)
 
      }
 }
