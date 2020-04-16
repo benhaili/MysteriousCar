@@ -15,6 +15,7 @@ const cartesRetournees=[];
 const nbPairesTrouvees=0;
 const nro=0;
 let cardFlipped=false;
+let blockFlip=false;
 let car1,car2;
 const imgSrc=document.getElementsByClassName('card__face--back')
 const bouton=document.getElementsByClassName('btn')
@@ -49,8 +50,11 @@ for (let index =1; index < nbrCards; index++) {
         }
 
         function flipped(){
-
-            this.classList.toggle('is-flipped')
+        if(blockFlip) return;
+        console.log('this',this)
+        console.log('car1',car1)
+        if (this === car1) return;
+            this.classList.add('is-flipped')
             if(!cardFlipped){
                 cardFlipped=true;
                 car1=this
@@ -59,18 +63,30 @@ for (let index =1; index < nbrCards; index++) {
  else{
      cardFlipped=false
      car2=this
-     //console.log(car1.dataset.car)
-     //console.log(car2.dataset.car)
-     if(car1.dataset.car===car2.dataset.car){
+     checkMatch()
+
+ }}
+
+
+function checkMatch(){
+    if(car1.dataset.car===car2.dataset.car){
         car1.removeEventListener('click',flipped)
         car2.removeEventListener('click',flipped)
+        blockFlip=false
+        cardFlipped=false
+        car1=null
+        car2=null
      }else{
+        blockFlip=true;
         setTimeout(()=>{
+
             car1.classList.remove('is-flipped')
             car2.classList.remove('is-flipped')
-        },1500)
+            blockFlip=false
+            cardFlipped=false
+            car1=null
+            car2=null
+        },2000)
 
      }
- }
- }
-
+}
