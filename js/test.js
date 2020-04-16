@@ -62,8 +62,8 @@ for (let index =1; index < nbrCards; index++) {
      //console.log(car1.dataset.car)
      //console.log(car2.dataset.car)
      if(car1.dataset.car===car2.dataset.car){
-        car1.removeEventListnner('click',flipped)
-        car2.removeEventListnner('click',flipped)
+        car1.removeEventListener('click',flipped)
+        car2.removeEventListener('click',flipped)
      }else{
         setTimeout(()=>{
             car1.classList.remove('is-flipped')
