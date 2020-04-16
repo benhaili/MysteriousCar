@@ -15,6 +15,7 @@ const cartesRetournees=[];
 const nbPairesTrouvees=0;
 const nro=0;
 let cardFlipped=false;
+let car1,car2;
 const imgSrc=document.getElementsByClassName('card__face--back')
 const bouton=document.getElementsByClassName('btn')
 bouton[0].addEventListener('click', initialiserJeu);
@@ -41,8 +42,8 @@ for(var i=0;i<imgSrc.length;i++){
     console.log('appel de la methode creer cartes')
 for (let index =1; index < nbrCards; index++) {
 
+    divClassCard.forEach(card=>card.addEventListener( 'click',  flipped))
 
-        divClassCard.forEach(card=>card.addEventListener( 'click',  flipped))
 
 
         }
@@ -50,10 +51,26 @@ for (let index =1; index < nbrCards; index++) {
         function flipped(){
 
             this.classList.toggle('is-flipped')
+            if(!cardFlipped){
+                cardFlipped=true;
+                car1=this
 
         }
- /*  if (bouton[0].value ==='arreter') {
-                location.reload();
-                this.classList.remove('is-flipped')
-            }
-            */
+ else{
+     cardFlipped=false
+     car2=this
+     //console.log(car1.dataset.car)
+     //console.log(car2.dataset.car)
+     if(car1.dataset.car===car2.dataset.car){
+        car1.removeEventListnner('click',flipped)
+        car2.removeEventListnner('click',flipped)
+     }else{
+        setTimeout(()=>{
+            car1.classList.remove('is-flipped')
+            car2.classList.remove('is-flipped')
+        },1500)
+
+     }
+ }
+ }
+
