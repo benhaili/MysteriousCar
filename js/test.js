@@ -22,34 +22,44 @@ const bouton=document.getElementsByClassName('btn')
 bouton[0].addEventListener('click', initialiserJeu);
 
 function initialiserJeu(){
+    location.reload();
 
-let indice=0;
-/* MELANGEUR DE CHIFFRES DES CARTES  */
-for(let i = motifsCartes.length-1; i > 0; i--){
-    const j = Math.floor(Math.random() * i)
-    const temp = motifsCartes[i]
-    motifsCartes[i] = motifsCartes[j]
-    motifsCartes[j] = temp
-  }
-/* AJOUTER DES CHIFFRES ALEATOIRES AU SRC */
-for(var i=0;i<imgSrc.length;i++){
-    imgSrc[i].src = 'photos/Car' + motifsCartes[indice] + '.png '
-    indice++
-    }
-/*-- CHANGEMENT DU BOUTTON A ARRETER ----*/
-    bouton[0].innerHTML='Arreter'
-    bouton[0].value='arreter'
+
 }
+(function shuffle() {
+    let indice=0;
+    /* MELANGEUR DE CHIFFRES DES CARTES  */
+    for(let i = motifsCartes.length-1; i > 0; i--){
+        const j = Math.floor(Math.random() * i)
+        const temp = motifsCartes[i]
+        motifsCartes[i] = motifsCartes[j]
+        motifsCartes[j] = temp
+      }
+    /* AJOUTER DES CHIFFRES ALEATOIRES AU SRC */
+    for(var i=0;i<imgSrc.length;i++){
+        imgSrc[i].src = 'photos/Car' + motifsCartes[indice] + '.png '
+        indice++
+        }
+    /*-- CHANGEMENT DU BOUTTON A ARRETER ----*/
+        bouton[0].innerHTML='Arreter'
+        bouton[0].value='arreter'
+
+  })();
+
+
+
     console.log('appel de la methode creer cartes')
 for (let index =1; index < nbrCards; index++) {
 
-    divClassCard.forEach(card=>card.addEventListener( 'click',  flipped))
+    divClassCard.forEach(card=>card.addEventListener('click',  flippe))
 
 
 
         }
 
-        function flipped(){
+     function flippe(){
+
+        console.log(blockFlip)
         if(blockFlip) return;
         console.log('this',this)
         console.log('car1',car1)
@@ -70,23 +80,29 @@ for (let index =1; index < nbrCards; index++) {
 
 function checkMatch(){
     if(car1.dataset.car===car2.dataset.car){
-        car1.removeEventListener('click',flipped)
-        car2.removeEventListener('click',flipped)
-        blockFlip=false
-        cardFlipped=false
-        car1=null
-        car2=null
+        car1.removeEventListener('click',flippe)
+        car2.removeEventListener('click',flippe)
+        initialiserBoard()
      }else{
-        blockFlip=true;
-        setTimeout(()=>{
-
-            car1.classList.remove('is-flipped')
-            car2.classList.remove('is-flipped')
-            blockFlip=false
-            cardFlipped=false
-            car1=null
-            car2=null
-        },800)
-
+        removeFlip()
      }
 }
+function removeFlip()
+{
+    blockFlip=true;
+    setTimeout(()=>{
+
+        car1.classList.remove('is-flipped')
+        car2.classList.remove('is-flipped')
+        initialiserBoard()
+    },800)
+
+ }
+ function initialiserBoard(){
+    blockFlip=false;
+    cardFlipped=false;
+
+car1=null;
+car2=null;
+
+ }
