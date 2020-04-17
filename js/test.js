@@ -4,29 +4,27 @@
 card.addEventListener( 'click', function() {
   card.classList.toggle('is-flipped');
 });*/
-const nbrCards=17;
-const max=8;
-let indexOfRepeatedCards=1;
+//const nbrCards=17;
+//const max=8;
+//let indexOfRepeatedCards=1;
 const divContainer=document.getElementById('cardContainer')
-const divClassCard=document.querySelectorAll('.card')
+//const divClassCard=document.querySelectorAll('.card')
 let motifsCartes=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
 const etatsCartes=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 const cartesRetournees=[];
 const nbPairesTrouvees=0;
-const nro=0;
-let cardFlipped=false;
+//const nro=0;
+/*let cardFlipped=false;
 let blockFlip=false;
-let car1,car2;
+let car1,car2;*/
 const imgSrc=document.getElementsByClassName('card__face--back')
 const bouton=document.getElementsByClassName('btn')
 bouton[0].addEventListener('click', initialiserJeu);
 
-function initialiserJeu(){
-    location.reload();
 
-
-}
-(function shuffle() {
+//function initialiserJeu(){
+   // location.reload();
+function initialiserJeu() {
     let indice=0;
     /* MELANGEUR DE CHIFFRES DES CARTES  */
     for(let i = motifsCartes.length-1; i > 0; i--){
@@ -35,23 +33,43 @@ function initialiserJeu(){
         motifsCartes[i] = motifsCartes[j]
         motifsCartes[j] = temp
       }
+
     /* AJOUTER DES CHIFFRES ALEATOIRES AU SRC */
-    for(var i=0;i<imgSrc.length;i++){
+    for(let i=0;i<imgSrc.length;i++){
         imgSrc[i].src = 'photos/Car' + motifsCartes[indice] + '.png '
+        imgSrc[i].setAttribute('nroCarte',motifsCartes[indice])
+        imgSrc[i].addEventListener('click', comparer)
+
+    }
+
+
+
+    /*for(var i=0;i<imgSrc.length;i++){
+        imgSrc[i].src = 'photos/Car' + motifsCartes[indice] + '.png '
+        imgSrc[i].nroCarte=motifsCartes[indice]//setAttribute('nroCarte',motifsCartes[indice])
+        imgSrc[i].onclick = function() {comparer(this.nroCarte)};
         indice++
         }
+*/
     /*-- CHANGEMENT DU BOUTTON A ARRETER ----*/
-        bouton[0].innerHTML='Arreter'
-        bouton[0].value='arreter'
+       /* bouton[0].innerHTML='Arreter'
+        bouton[0].value='arreter'*/
 
-  })();
+
+
+
+  //};
+
+//}
+
 
 
 
     console.log('appel de la methode creer cartes')
 for (let index =1; index < nbrCards; index++) {
 
-    divClassCard.forEach(card=>card.addEventListener('click',  flippe))
+    divClassCard.forEach(card=>card.addEventListener('click',  flippe),
+    card.setAttribute('data-car', motifsCartes[index]))
 
 
 

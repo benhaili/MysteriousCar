@@ -13,17 +13,17 @@
     <nav>
         <div class="container">
             <button class="btn btn1" value="newGame">Nouvelle Partie </button>
-            <button class="btn btn2">Quitter </button>
             <!--<button class="btn btn3">Rejouer</button>-->
 
         </div>
         <div class="text">
-            <label for="temps">Temps Ecoule</label>
-            <input id="temps" type="text">
-            <label for="paire">Paire trouve</label>
-            <input id="paire" type="text">
-            <label for="pointage">Meilleur Pointage</label>
-            <input id="pointage" type="text">
+
+            //<label for="temps">Temps Ecoule</label>
+            <p id="temps"></p>
+            <label for="paire">Paires Trouve</label>
+            <input id="paire" type="text" disabled>
+            <label for="temps">Meilleur Temps</label>
+            <input id="temps" type="text" disabled>
         </div>
 
         <div class="winning-message" id="winningMessage">
@@ -44,7 +44,7 @@
         </div>
     </div>
     -->
-    <div id="cardContainer" class="cardContainer">
+    <div id="cardContainer">
         <div class="scene scene--card">
             <div class="card " data-car="car1">
                 <img class="card__face card__face--front" src="photos/Interrogation.png" alt="meme1">
@@ -144,7 +144,8 @@
         </div>
 
     </div>
-    <script src="js/test.js"></script>
+    <h1 id="win"></h1>
+    <script src="js/test3.js"></script>
 
 </body>
 

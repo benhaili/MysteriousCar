@@ -172,3 +172,19 @@ nav {
 .winning-message.show {
     display: flex;
 }
+
+#win {
+    text-align: center;
+    color: red;
+    animation-name: winMessage;
+    animation-duration: 5s;
+}
+
+@keyframes winMessage {
+    from {
+        color: red;
+    }
+    to {
+        color: yellow;
+    }
+}
