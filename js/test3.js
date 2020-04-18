@@ -1,20 +1,54 @@
 const motifsCartes = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
 const max = 8
-const messageWin = document.getElementById('win')
+const messageWin = document.getElementById('winningMessage')
 const temps = document.getElementById('temps')
 let nbPairesTrouvees = 0
 let cardFlipped = false
 let blockFlip = false
 let car1, car2
 const champTextPairesTrouve = document.getElementById('paire')
+const restart=document.getElementById("restartButton")
 const imgSrc = document.getElementById('cardContainer').getElementsByClassName('card__face--back')
-// const card = document.getElementById('cardContainer').getElementsByClassName('card')
+ let car = document.getElementById('cardContainer')
 // const divContainer = document.getElementById('cardContainer')
 const card = document.querySelectorAll('.card')
 const bouton = document.getElementsByClassName('btn')
 bouton[0].addEventListener('click', initialiserJeu)
+let counter=0
+let timeLeft=100
+function setup(){
+    let timer=document.getElementById('temps')
+    timer.innerHTML=timeLeft-counter
+function timeIt(){
+counter++;
+timer.innerHTML=timeLeft-counter
+if(counter==timeLeft){
+
+    clearInterval(update)
+    console.log(messageWin)
+    document.getElementById("cardContainer").style.display='none'
+    car.classList.add('hide')
+    messageWin.classList.add('show')
+    console.log( document.getElementById("cardContainer"))
+
+}
+else if(nbPairesTrouvees===8){
+    clearInterval(update)
+
+    document.getElementById('winning-text').innerHTML='Bravo Vous Avez gagner</br> Votre temps est '+timer.innerHTML
+    document.getElementById("cardContainer").style.display='none'
+    car.classList.add('hide')
+    messageWin.classList.add('show')
+
+}
+
+}
+update=setInterval(timeIt,1000)
+}
+
 function initialiserJeu () {
-    // timer()
+    setup()
+
     bouton[0].innerHTML = 'Arreter Partie'
     bouton[0].addEventListener('click', arreterPartie)
 
@@ -33,7 +67,18 @@ function initialiserJeu () {
         card[i].setAttribute('data-car', motifsCartes[i])
         card[i].addEventListener('click', flippe)
     }
+    restart.addEventListener('click',restartFunction)
+    function restartFunction(){
+        clearInterval(update)
+       // console.log( document.getElementById("cardContainer"))
+        document.getElementById("cardContainer").style.display='flex'
+        document.getElementById("cardContainer").style.flexWrap='wrap'
+        messageWin.classList.remove('show')
 
+
+       // document.getElementById("cardContainer")
+       // initialiserJeu ()
+    }
     function flippe () {
         console.log(blockFlip)
         if (blockFlip) return
@@ -76,6 +121,7 @@ function initialiserJeu () {
 
         car1 = null
         car2 = null
+        //setup()
     }
 }
 function win () {

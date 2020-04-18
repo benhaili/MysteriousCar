@@ -74,6 +74,11 @@ img {
     flex-wrap: wrap;
 }
 
+.hide {
+    display: none;
+    visibility: hidden;
+}
+
 .container, .text {
     text-align: center;
 }
