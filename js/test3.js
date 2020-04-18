@@ -1,5 +1,5 @@
 const motifsCartes = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
-const max = 8
+const max = 9
 const messageWin = document.getElementById('winningMessage')
 const temps = document.getElementById('temps')
 let nbPairesTrouvees = 0
@@ -32,10 +32,11 @@ if(counter==timeLeft){
     console.log( document.getElementById("cardContainer"))
 
 }
-else if(nbPairesTrouvees===8){
+else if(nbPairesTrouvees==8){
+    document.getElementById('winning-text').innerHTML='Bravo Vous Avez gagner</br>   Votre temps est '+timer.innerHTML
     clearInterval(update)
+    console.log( document.getElementById("winning-text"))
 
-    document.getElementById('winning-text').innerHTML='Bravo Vous Avez gagner</br> Votre temps est '+timer.innerHTML
     document.getElementById("cardContainer").style.display='none'
     car.classList.add('hide')
     messageWin.classList.add('show')
@@ -74,7 +75,7 @@ function initialiserJeu () {
         document.getElementById("cardContainer").style.display='flex'
         document.getElementById("cardContainer").style.flexWrap='wrap'
         messageWin.classList.remove('show')
-
+        location.reload()
 
        // document.getElementById("cardContainer")
        // initialiserJeu ()
