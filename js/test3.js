@@ -1,4 +1,5 @@
 const motifsCartes = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
+let bestTime=0;
 const max = 9
 const messageWin = document.getElementById('winningMessage')
 const temps = document.getElementById('temps')
@@ -34,6 +35,14 @@ if(counter==timeLeft){
 }
 else if(nbPairesTrouvees==8){
     document.getElementById('winning-text').innerHTML='Bravo Vous Avez gagner</br>   Votre temps est '+timer.innerHTML
+    if (bestTime===0) {
+        bestTime=timer.innerHTML
+        document.getElementById('winning-text').innerHTML='Bravo Vous Avez Gagner </br>  Votre temps est '+timer.innerHTML + '</br> Meilleur Temps '+bestTime
+
+    }else if (timer.innerHTML<bestTime) {
+        bestTime=timer.innerHTML
+        document.getElementById('winning-text').innerHTML='Bravo Vous Avez Gagner </br>  Votre temps est '+timer.innerHTML + '</br> Meilleur Temps '+bestTime
+    }
     clearInterval(update)
     console.log( document.getElementById("winning-text"))
 
